@@ -7,18 +7,19 @@
  */
 
 /**
- * Description of Principal
+ * Description of ProyectoController
  *
  * @author pcwin
  */
-class Principal {
+class ProyectoController {
+    //put your code here
         
     private $conectar;
     private $conexion;
 
     public function __construct() {
 		require_once  __DIR__ . "/../core/Conectar.php";
-        require_once  __DIR__ . "/../model/Bodega.php";
+        require_once  __DIR__ . "/../model/Proyecto.php";
         
         $this->conectar=new Conectar();
         $this->conexion=$this->conectar->conexion();

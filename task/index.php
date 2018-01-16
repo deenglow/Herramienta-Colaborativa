@@ -19,16 +19,22 @@ if(isset($_GET["controller"])){
 function cargarControlador($controller){
 
     switch ($controller) {
-        case 'bodegas':
+        
+        case 'principal':
             $strFileController='controller/PrincipalController.php';
             require_once $strFileController;
-            $controllerObj=new BodegasController();
+            $controllerObj=new PrincipalController();
+            break;
+        case 'proyecto':
+            $strFileController='controller/ProyectoController.php';
+            require_once $strFileController;
+            $controllerObj=new ProyectoController();
             break;
         
         default:
             $strFileController='controller/PrincipalController.php';
             require_once $strFileController;
-            $controllerObj=new BodegasController();
+            $controllerObj=new PrincipalController();
             break; 
     }
     return $controllerObj;

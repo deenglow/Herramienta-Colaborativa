@@ -17,25 +17,14 @@
         </style>
     </head>
     <body class="container">
-            <h3>LISTA DE BODEGAS</h3>
-            <hr/>
-        <section style="height:400px;overflow-y:scroll;">
-            <?php foreach($data["bodegas"] as $bodega) {?>
-                <?php echo $bodega["idBodega"]; ?> -
-                Nombre Bodega: <?php echo $bodega["nombre"]; ?> -
-                Email: <?php echo $bodega["email"]; ?> -
-                Telefono: <?php echo $bodega["telefono"]; ?>&nbsp;
-                <a href="index.php?controller=bodegas&action=delete&id=<?php echo $bodega['idBodega']; ?>" class="btn btn-danger">Eliminar</a>&nbsp;
-                <a href="index.php?controller=bodegas&action=detalleBodega&id=<?php echo $bodega['idBodega']; ?>" class="btn btn-info">
-                Detalle</a>
-                <hr/>
-            <?php } ?>
-               <a href="index.php?controller=bodegas&action=detalleCrearBodega" class="btn btn-success">AÑADIR</a>&nbsp;
-        </section>
- 
+            <h3>PAGINA PRINCIPAL</h3>
+            <div class="container">
+                <a href="index.php?controller=proyecto&action=detalleCrearBodega" class="btn btn-success">IR PERFIL</a>
+            </div>
+            
         <footer>
             <hr/>
-           Ejercicio_mvc_Bodegas - David Ramirez - <a href="#">dramirez.es</a> - Copyright &copy; <?php echo  date("Y"); ?>
+           Reto_3 - HERRAMIENTA COLABORATIVA - David Ramirez - <a href="#">dramirez.es</a> - Copyright &copy; <?php echo  date("Y"); ?>
         </footer>
     </body>
 </html>
