@@ -47,24 +47,34 @@ class Proyecto {
     function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
-    
-    public function save(){
 
-        /*$consulta = $this->conexion->prepare("INSERT INTO bodegas (direccion, nombre, email, telefono, nombreContacto, fechaFundacion, hasRestaurante, hasHotel)
-                                        VALUES (:direccion, :nombre,:email,:telefono, :nombreContacto, :fechaFundacion, :hasRestaurante, :hasHotel)");
+     public function getAll(){
+
+        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto") ;
+        $consulta->execute();
+        $resultados = $consulta->fetchAll();
+        $this->conexion = null; 
+        return $resultados;
+
+    }    
+ 
+    public function save(){
+        $consulta = $this->conexion->prepare("INSERT INTO proyecto (nombre,descripcion) VALUES (:nombre, :descripcion)");
         $save = $consulta->execute(array(
-            "direccion" => $this->direccion,
             "nombre" => $this->nombre,
-            "email" => $this->email,
-            "telefono" => $this->telefono,
-            "nombreContacto" => $this->nombreContacto,
-            "fechaFundacion" => $this->fechaFundacion,
-            "hasRestaurante" => $this->hasRestaurante,
-            "hasHotel" => $this->hasHotel
+            "descripcion" => $this->descripcion
+     
         ));
         $this->conexion = null;
 
-        return $save;*/
+        return $save;
+    }
+    
+    public function delete($id){
+        $consulta = $this->conexion->prepare("DELETE FROM proyecto WHERE idProyecto = " . $id);
+        $consulta->execute();
+        $this->conexion = null; 
+
     }
 
     

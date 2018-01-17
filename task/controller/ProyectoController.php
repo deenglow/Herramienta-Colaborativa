@@ -33,14 +33,8 @@ class ProyectoController {
     public function run($accion){
         switch($accion)
         { 
-            case "index" :
-                $this->index();
-                break;
-            case "detalleCrearBodega" :
-                $this->detalleCrearBodega();
-                break;
-            case "detalleBodega" :
-                $this->detalleBodega();
+            case "proyectoVista" :
+                $this->proyectoVista();
                 break;
             case "alta" :
                 $this->crear();
@@ -52,7 +46,7 @@ class ProyectoController {
                 $this->delete();
                 break;
             default:
-                $this->index();
+                $this->proyectoVista();
                 break;
         }
     }
@@ -62,59 +56,15 @@ class ProyectoController {
     * empleados que consigue del modelo.
     *
     */ 
-    public function index(){
+    public function proyectoVista(){
         
         //Creamos el objeto empleado
-        $bodega=new Bodega($this->conexion);
+        $proyecto=new Proyecto($this->conexion);
         
-        //Conseguimos todos los empleados
-        $bodegas=$bodega->getAll();
-       
         //Cargamos la vista index y le pasamos valores
-        $this->view("index",array(
-            "bodegas"=>$bodegas,
-            "titulo" => "BODEGA"
-        ));
+        $this->view("proyecto",null);
+   
     }
-
-
-    //CARGA LA VISTA DETALLE
-     public function detalleCrearBodega(){
-        if(!isset($_GET["detalleCrearBodega"])){
-            
-            //Cargamos la vista index y le pasamos valores
-            $this->view("detalleCrearBodega",null);
-            
-
-        }
-        
-    }
-    
-    public function detalleBodega(){
-       if(!isset($_GET["detalleBodega"])){
-           
-            include './model/Vino.php';
-
-            //Creamos el objeto empleado
-            $bodega=new Bodega($this->conexion);
-            $vino=new Vino($this->conexion);
-        
-            //Conseguimos todos los empleados
-            $bodegaSeleccionada=$bodega->getBodega($_GET["id"]);
-            $listaVinos=$vino->getAll($_GET["id"]);
-
-            //Cargamos la vista index y le pasamos valores
-            $this->view("detalleBodega",array(
-                "bodega"=>$bodegaSeleccionada,
-                "vinos"=>$listaVinos,
-                "titulo" => "INFO BODEGA"
-            ));
-            
-
-        }
-        
-    }
-
     
    /**
     * Crea un nuevo empleado a partir de los parámetros POST 
@@ -122,25 +72,21 @@ class ProyectoController {
     *
     */
     public function crear(){
-        if(isset($_POST["direccion"])){
-            //Creamos un usuario
-            $bodega=new Bodega($this->conexion);
-            $bodega->setDireccion($_POST["direccion"]);
-            $bodega->setNombre($_POST["nombre"]);
-            $bodega->setEmail($_POST["email"]);
-            $bodega->setTelefono($_POST["telefono"]);
-            $bodega->setNombreContacto($_POST["nombrePersonaContacto"]);
-            $bodega->setFechaFundacion($_POST["fechaFundacion"]);
-            $bodega->setHasRestaurante($_POST["hasRestaurante"]);
-            $bodega->setHasHotel($_POST["hasHotel"]);
-            $save=$bodega->save();
+        if(isset($_POST["nombre"])){
+
+            //Creamos un proyecto
+            $proyecto=new Proyecto($this->conexion);
+            $proyecto->setNombre($_POST["nombre"]);
+            $proyecto->setDescripcion($_POST["descripcion"]);
+            $save=$proyecto->save();
+            
         }
-        header('Location: index.php');
+        header('Location: index.php?controller=perfil&action=perfilUsuario');
     }
    
     //FUNCION ACTUALIZAR
     public function actualizar(){
-        if(!isset($_GET["actualizar"])){          
+        /*if(!isset($_GET["actualizar"])){          
              //Creamos un usuario
             $bodega=new Bodega($this->conexion);
             $bodega->setIdBodega($_GET["id"]);
@@ -156,7 +102,7 @@ class ProyectoController {
 
             header('Location: index.php?controller=bodegas&action=detalleBodega&id='.$bodega->getIdBodega());
 
-        }
+        }*/
         
 
     }
@@ -164,11 +110,11 @@ class ProyectoController {
     //FUNCION DELETE
     public function delete (){
         if(!isset($_GET["delete"])){
-            $bodega=new Bodega($this->conexion);
-            $bodega->delete($_GET["id"]);
+            $proyecto=new Proyecto($this->conexion);
+            $proyecto->delete($_GET["idProyecto"]);
         }
 
-        header('Location: index.php');
+        header('Location: index.php?controller=perfil&action=perfilUsuario');
     }
     
     

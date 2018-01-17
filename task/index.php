@@ -25,12 +25,16 @@ function cargarControlador($controller){
             require_once $strFileController;
             $controllerObj=new PrincipalController();
             break;
+        case 'perfil':
+            $strFileController='controller/PerfilController.php';
+            require_once $strFileController;
+            $controllerObj=new PerfilController();
+            break;
         case 'proyecto':
             $strFileController='controller/ProyectoController.php';
             require_once $strFileController;
             $controllerObj=new ProyectoController();
             break;
-        
         default:
             $strFileController='controller/PrincipalController.php';
             require_once $strFileController;
