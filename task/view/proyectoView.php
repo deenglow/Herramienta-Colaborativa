@@ -19,7 +19,7 @@
     <body class="container">
         <h1>PAGINA PROYECTO</h1>
         <hr>
-                <form action="index.php?controller=tarea&action=crea&&idUsuario=1" method="post">
+                <form action="index.php?controller=tarea&action=alta&idProyecto=<?php echo $_GET['idProyecto']?>" method="post">
                     <h3>Crear Tarea</h3>
                     <hr/>
                     Nombre: <input type="text" name="nombre" class="form-control"/>
@@ -30,6 +30,16 @@
                                </select>
                     <input type="submit" value="Crear" class="btn btn-success"/>   
                 </form>
+        <h3>LISTA DE SUS TAREAS</h3>
+            <hr/>
+        <section style="height:400px;overflow-y:scroll;">
+            <?php foreach($data["tareas"] as $tarea) {?>
+                Nombre: <?php echo $tarea["nombre"]; ?> -
+                Fecha Vencimiento: <?php echo $tarea["fecha_vencimiento"]; ?> -
+                <a href="index.php?controller=tarea&action=delete&idTarea=<?php echo $tarea["idTarea"]?>&idProyecto=<?php echo $tarea["idProyecto"]?>" class="btn btn-danger">Eliminar</a>&nbsp;
+                <hr/>
+            <?php } ?>
+        </section>
         <footer>
             <hr/>
            Reto_3 - HERRAMIENTA COLABORATIVA - David Ramirez - <a href="#">dramirez.es</a> - Copyright &copy; <?php echo  date("Y"); ?>

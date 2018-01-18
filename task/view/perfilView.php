@@ -19,7 +19,7 @@
     <body class="container">
             <h3>PAGINA PERFIL</h3>
             <div class="container">
-                <form action="index.php?controller=proyecto&action=alta&&idUsuario=1" method="post">
+                <form action="index.php?controller=proyecto&action=alta&idUsuario=1" method="post">
                     <h3>Crear Proyecto</h3>
                     <hr/>
                     Nombre: <input type="text" name="nombre" class="form-control"/>
@@ -34,7 +34,19 @@
                 Nombre: <?php echo $proyecto["nombre"]; ?> -
                 Descripcion: <?php echo $proyecto["descripcion"]; ?> -
                 <a href="index.php?controller=proyecto&action=delete&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class="btn btn-danger">Eliminar</a>&nbsp;
-                <a href="index.php?controller=proyecto&action=proyectoVista&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class="btn btn-info">Ir Proyecto</a>&nbsp;
+                <a href="index.php?controller=proyecto&action=proyectoVista&idProyecto=<?php echo $proyecto['idProyecto'];?>" class="btn btn-info">Ir Proyecto</a>&nbsp;
+                <hr/>
+            <?php } ?>
+        </section>
+            
+             <h3>LISTA DE PROYECTOS DISPONIBLES</h3>
+            <hr/>
+        <section style="height:400px;overflow-y:scroll;">
+            <?php foreach($data["proyectosDisponibles"] as $proyectoDisponible) {?>
+                Nombre: <?php echo $proyectoDisponible["nombre"]; ?> -
+                Descripcion: <?php echo $proyectoDisponible["descripcion"]; ?> -
+                <a href="index.php?controller=proyecto&action=delete&idProyecto=<?php echo $proyectoDisponible['idProyecto']; ?>" class="btn btn-danger">Eliminar</a>&nbsp;
+                <a href="index.php?controller=proyecto&action=proyectoVista&idProyecto=<?php echo $proyectoDisponible['idProyecto'];?>" class="btn btn-info">Ir Proyecto</a>&nbsp;
                 <hr/>
             <?php } ?>
         </section>

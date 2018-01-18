@@ -36,9 +36,9 @@ function cargarControlador($controller){
             $controllerObj=new ProyectoController();
             break;
         default:
-            $strFileController='controller/PrincipalController.php';
+            $strFileController='controller/TareaController.php';
             require_once $strFileController;
-            $controllerObj=new PrincipalController();
+            $controllerObj=new TareaController();
             break; 
     }
     return $controllerObj;

@@ -57,13 +57,17 @@ class ProyectoController {
     *
     */ 
     public function proyectoVista(){
-        
-        //Creamos el objeto empleado
+        include './model/Tarea.php';
+
         $proyecto=new Proyecto($this->conexion);
+        $tarea=new Tarea($this->conexion);
+        
+        $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
         
         //Cargamos la vista index y le pasamos valores
-        $this->view("proyecto",null);
-   
+        $this->view("proyecto",array(
+                "tareas"=>$listaTareas
+            ));
     }
     
    /**
@@ -79,7 +83,7 @@ class ProyectoController {
             $proyecto->setNombre($_POST["nombre"]);
             $proyecto->setDescripcion($_POST["descripcion"]);
             $save=$proyecto->save();
-            
+               
         }
         header('Location: index.php?controller=perfil&action=perfilUsuario');
     }

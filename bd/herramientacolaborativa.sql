@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2018 a las 20:17:31
--- Versión del servidor: 10.1.29-MariaDB
--- Versión de PHP: 7.2.0
+-- Tiempo de generación: 18-01-2018 a las 13:25:36
+-- Versión del servidor: 10.1.26-MariaDB
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,6 +58,15 @@ CREATE TABLE `proyecto` (
   `descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+INSERT INTO `proyecto` (`idProyecto`, `nombre`, `descripcion`) VALUES
+(11, 'construir casa', 'adosada'),
+(26, 'asda', 'a'),
+(34, 'd', 'd');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +80,14 @@ CREATE TABLE `tarea` (
   `realizado` int(1) NOT NULL,
   `idProyecto` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tarea`
+--
+
+INSERT INTO `tarea` (`idTarea`, `nombre`, `fecha_vencimiento`, `realizado`, `idProyecto`) VALUES
+(20, 'asdaf', '2018-01-12', 0, 11),
+(22, 'dasd', '2018-01-28', 0, 34);
 
 -- --------------------------------------------------------
 
@@ -88,6 +105,13 @@ CREATE TABLE `usuario` (
   `telefono` varchar(9) NOT NULL,
   `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `primerApellido`, `segundoApellido`, `email`, `contraseña`, `telefono`, `foto`) VALUES
+(1, 'david', 'xxx', 'xxx', 'pruebas@ppp.es', '12345', '945111111', '');
 
 -- --------------------------------------------------------
 
@@ -164,19 +188,19 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `idProyecto` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProyecto` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

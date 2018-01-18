@@ -56,6 +56,16 @@ class Proyecto {
         $this->conexion = null; 
         return $resultados;
 
+    }  
+    
+    public function getAllNoParticipante(){
+
+        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto WHERE ") ;
+        $consulta->execute();
+        $resultados = $consulta->fetchAll();
+        $this->conexion = null; 
+        return $resultados;
+
     }    
  
     public function save(){
@@ -65,8 +75,7 @@ class Proyecto {
             "descripcion" => $this->descripcion
      
         ));
-        $this->conexion = null;
-
+        
         return $save;
     }
     

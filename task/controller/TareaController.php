@@ -19,7 +19,7 @@ class TareaController {
 
     public function __construct() {
 		require_once  __DIR__ . "/../core/Conectar.php";
-        require_once  __DIR__ . "/../model/Proyecto.php";
+        require_once  __DIR__ . "/../model/Tarea.php";
         
         $this->conectar=new Conectar();
         $this->conexion=$this->conectar->conexion();
@@ -46,13 +46,15 @@ class TareaController {
         if(isset($_POST["nombre"])){
 
             //Creamos un proyecto
-            $tarea=new Proyecto($this->conexion);
-            $proyecto->setNombre($_POST["nombre"]);
-            $proyecto->setDescripcion($_POST["descripcion"]);
-            $save=$proyecto->save();
+            $tarea=new Tarea($this->conexion);
+            $tarea->setNombre($_POST["nombre"]);
+            $tarea->setFechaVencimiento($_POST["FechaVencimiento"]);
+            $tarea->
+            $save=$tarea->save($_GET["idProyecto"]);
             
         }
-        header('Location: index.php?controller=perfil&action=perfilUsuario');
+        $id=$_GET["idProyecto"];
+        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
     }
    
     //FUNCION ACTUALIZAR
@@ -62,7 +64,12 @@ class TareaController {
 
     //FUNCION DELETE
     public function delete (){
-       
+         if(!isset($_GET["delete"])){
+            $tarea=new Tarea($this->conexion);
+            $tarea->delete($_GET["idTarea"]);
+        }
+        $id=$_GET["idProyecto"];
+        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
     }
     
 }
