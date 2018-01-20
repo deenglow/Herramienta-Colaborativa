@@ -55,12 +55,12 @@ class PerfilController {
         $proyecto=new Proyecto($this->conexion);
         
         $listaProyectos=$proyecto->getAll();
-        $listaProyectosNoParticipante=$proyecto->getAllNoParticipante();
+        //$listaProyectosNoParticipante=$proyecto->getAllNoParticipante();
         
         //Cargamos la vista index y le pasamos valores
         $this->view("perfil",array(
-                "proyectos"=>$listaProyectos,
-                "proyectosDisponibles"=>$listaProyectosNoParticipante
+                "proyectos"=>$listaProyectos//,
+                //"proyectosDisponibles"=>$listaProyectosNoParticipante
             ));
     }
 

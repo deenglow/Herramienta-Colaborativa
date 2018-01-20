@@ -60,14 +60,14 @@ class Proyecto {
     
     public function getAllNoParticipante(){
 
-        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto WHERE ") ;
+        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto") ;
         $consulta->execute();
         $resultados = $consulta->fetchAll();
         $this->conexion = null; 
         return $resultados;
 
     }    
- 
+
     public function save(){
         $consulta = $this->conexion->prepare("INSERT INTO proyecto (nombre,descripcion) VALUES (:nombre, :descripcion)");
         $save = $consulta->execute(array(
@@ -76,7 +76,10 @@ class Proyecto {
      
         ));
         
-        return $save;
+       $lastId=$this->conexion->lastInsertId();
+       $this->conexion = null; 
+       
+       return $lastId;
     }
     
     public function delete($id){

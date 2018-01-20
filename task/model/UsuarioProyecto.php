@@ -18,6 +18,7 @@ class UsuarioProyecto {
     
     private $idUsuario;
     private $idProyecto;
+    private $tipo;
     
      function __construct($conexion) {
         $this->conexion = $conexion;
@@ -38,6 +39,25 @@ class UsuarioProyecto {
     function setIdProyecto($idProyecto) {
         $this->idProyecto = $idProyecto;
     }
+    
+    function getTipo() {
+        return $this->tipo;
+    }
 
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
 
+    
+    public function save(){
+        $consulta = $this->conexion->prepare("INSERT INTO usuario_proyecto (idUsuario, idProyecto ,tipo) VALUES (:idUsuario, :idProyecto, :tipo");
+        $save = $consulta->execute(array(
+            "idUsuario" => $this->idUsuario,
+            "idProyecto" => $this->idProyecto,
+            "tipo" => $this->tipo
+        ));
+        $this->conexion = null; 
+        
+        return $save;
+    }   
 }

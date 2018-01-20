@@ -78,14 +78,22 @@ class ProyectoController {
     public function crear(){
         if(isset($_POST["nombre"])){
 
-            //Creamos un proyecto
+            include './model/UsuarioProyecto.php';
+           
             $proyecto=new Proyecto($this->conexion);
             $proyecto->setNombre($_POST["nombre"]);
             $proyecto->setDescripcion($_POST["descripcion"]);
-            $save=$proyecto->save();
-               
+            $lastId=$proyecto->save();
+
+            $usuarioProyecto = new UsuarioProyecto ($this->conexion);
+            $usuarioProyecto->setIdProyecto($lastId);
+            $usuarioProyecto->setIdUsuario($_GET['idUsuario']);
+            $usuarioProyecto->setTipo('creador');
+
+            $save = $usuarioProyecto->save();
+            
         }
-        header('Location: index.php?controller=perfil&action=perfilUsuario');
+        //header('Location: index.php?controller=perfil&action=perfilUsuario');
     }
    
     //FUNCION ACTUALIZAR

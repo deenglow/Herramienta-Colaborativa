@@ -19,7 +19,7 @@
     <body class="container">
             <h3>PAGINA PRINCIPAL</h3>
             <div class="container">
-                <a href="index.php?controller=perfil&action=perfilUsuario" class="btn btn-success">IR PERFIL</a>
+                <a href="index.php?controller=perfil&action=perfilUsuario&idUsuario=1" class="btn btn-success">IR PERFIL</a>
             </div>
             
         <footer>
