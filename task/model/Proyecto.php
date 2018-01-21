@@ -60,7 +60,7 @@ class Proyecto {
     
     public function getAllNoParticipante(){
 
-        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto") ;
+        $consulta = $this->conexion->prepare("SELECT idProyecto FROM  usuario_proyecto WHERE idUsuario != ") ;
         $consulta->execute();
         $resultados = $consulta->fetchAll();
         $this->conexion = null; 

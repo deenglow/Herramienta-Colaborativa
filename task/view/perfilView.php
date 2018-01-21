@@ -18,7 +18,8 @@
     </head>
     <body class="container">
             <h3>PAGINA PERFIL</h3>
-            <div class="container">
+            <div class="col-lg-7">
+            <div>
                 <form action="index.php?controller=proyecto&action=alta&idUsuario=1" method="post">
                     <h3>Crear Proyecto</h3>
                     <hr/>
@@ -50,7 +51,12 @@
                 <hr/>
             <?php } ?>
         </section>
-        <footer>
+            </div>
+            <div class="col-lg-5">
+                <h3>MENSAJES</h3> 
+                
+            </div>
+        <footer class="col-lg-12">
             <hr/>
            Reto_3 - HERRAMIENTA COLABORATIVA - David Ramirez - <a href="#">dramirez.es</a> - Copyright &copy; <?php echo  date("Y"); ?>
         </footer>
