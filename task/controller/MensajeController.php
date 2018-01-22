@@ -7,17 +7,18 @@
  */
 
 /**
- * Description of PerfilController
+ * Description of mensajeController
  *
  * @author 2gdaw01
  */
-class PerfilController {
-     private $conectar;
+class MensajeController {
+    //put your code here
+      private $conectar;
     private $conexion;
 
     public function __construct() {
 		require_once  __DIR__ . "/../core/Conectar.php";
-        require_once  __DIR__ . "/../model/Usuario.php";
+        require_once  __DIR__ . "/../model/Mensaje.php";
         
         $this->conectar=new Conectar();
         $this->conexion=$this->conectar->conexion();
@@ -31,8 +32,8 @@ class PerfilController {
     public function run($accion){
         switch($accion)
         { 
-            case "perfilUsuario" :
-                $this->perfilUsuario();
+            case "proyectoVista" :
+                $this->proyectoVista();
                 break;
             case "alta" :
                 $this->crear();
@@ -47,24 +48,30 @@ class PerfilController {
     }
     
 
-    public function perfilUsuario(){
-        
-        include './model/Proyecto.php';
-        
-        $usuario=new Usuario($this->conexion);
+    public function proyectoVista(){
+        include './model/Tarea.php';
+
         $proyecto=new Proyecto($this->conexion);
+        $tarea=new Tarea($this->conexion);
         
-        $listaProyectos=$proyecto->getAllById($_GET['idUsuario']);
-        //$listaProyectosNoParticipante=$proyecto->getAllNoParticipante();
+        $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
         
         //Cargamos la vista index y le pasamos valores
-        $this->view("perfil",array(
-                "proyectos"=>$listaProyectos//,
-                //"proyectosDisponibles"=>$listaProyectosNoParticipante
+        $this->view("proyecto",array(
+                "tareas"=>$listaTareas
             ));
     }
-
     public function crear(){
+        $mensaje=new Mensaje($this->conexion);
+        $mensaje->setIdProyecto($_GET['idProyecto']);
+        $mensaje->setDescripcion($_POST['mensaje']);
+        $fecha= date("Y-m-d H:i:s");
+        $mensaje->setFecha($fecha);
+        
+        $mensaje->save();
+        
+        
+        header("Location: http://localhost/task/index.php?controller=proyecto&action=proyectoVista&idProyecto=".$_GET['idProyecto']);
 
     }
    

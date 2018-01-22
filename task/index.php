@@ -35,10 +35,15 @@ function cargarControlador($controller){
             require_once $strFileController;
             $controllerObj=new ProyectoController();
             break;
-        default:
+        case 'tarea':
             $strFileController='controller/TareaController.php';
             require_once $strFileController;
             $controllerObj=new TareaController();
+            break; 
+        case 'mensaje':
+            $strFileController='controller/MensajeController.php';
+            require_once $strFileController;
+            $controllerObj=new MensajeController();
             break; 
     }
     return $controllerObj;

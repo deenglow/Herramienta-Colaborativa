@@ -49,15 +49,16 @@ class UsuarioProyecto {
     }
 
     
-    public function save(){
-        $consulta = $this->conexion->prepare("INSERT INTO usuario_proyecto (idUsuario, idProyecto ,tipo) VALUES (:idUsuario, :idProyecto, :tipo");
+    public function save(){        
+        $consulta = $this->conexion->prepare('INSERT INTO usuario_proyecto (idUsuario, idProyecto, tipo) VALUES (:idUsuario, :idProyecto, :tipo)');
         $save = $consulta->execute(array(
-            "idUsuario" => $this->idUsuario,
-            "idProyecto" => $this->idProyecto,
-            "tipo" => $this->tipo
+            ':idUsuario' => $this->idUsuario,
+            ':idProyecto' => $this->idProyecto,
+            ':tipo' => $this->tipo
         ));
         $this->conexion = null; 
         
         return $save;
-    }   
+    } 
+
 }

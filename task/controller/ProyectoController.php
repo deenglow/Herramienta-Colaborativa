@@ -58,15 +58,19 @@ class ProyectoController {
     */ 
     public function proyectoVista(){
         include './model/Tarea.php';
+        include './model/Mensaje.php';
 
         $proyecto=new Proyecto($this->conexion);
         $tarea=new Tarea($this->conexion);
+        $mensaje=new Mensaje($this->conexion);
         
         $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
+        $listaMensajes=$mensaje->getAllByIdProyecto($_GET['idProyecto']);
         
         //Cargamos la vista index y le pasamos valores
         $this->view("proyecto",array(
-                "tareas"=>$listaTareas
+                "tareas"=>$listaTareas,
+                "mensajes" =>$listaMensajes
             ));
     }
     
@@ -87,13 +91,13 @@ class ProyectoController {
 
             $usuarioProyecto = new UsuarioProyecto ($this->conexion);
             $usuarioProyecto->setIdProyecto($lastId);
-            $usuarioProyecto->setIdUsuario($_GET['idUsuario']);
-            $usuarioProyecto->setTipo('creador');
-
+            $usuarioProyecto->setIdUsuario($_GET["idUsuario"]);
+            $usuarioProyecto->setTipo("creador");
+            
             $save = $usuarioProyecto->save();
             
         }
-        //header('Location: index.php?controller=perfil&action=perfilUsuario');
+        header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
    
     //FUNCION ACTUALIZAR
@@ -126,7 +130,7 @@ class ProyectoController {
             $proyecto->delete($_GET["idProyecto"]);
         }
 
-        header('Location: index.php?controller=perfil&action=perfilUsuario');
+       header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
     
     

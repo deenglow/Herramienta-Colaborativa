@@ -20,7 +20,7 @@
             <h3>PAGINA PERFIL</h3>
             <div class="col-lg-7">
             <div>
-                <form action="index.php?controller=proyecto&action=alta&idUsuario=1" method="post">
+                <form action="index.php?controller=proyecto&action=alta&idUsuario=<?php echo $_GET['idUsuario']; ?>" method="post">
                     <h3>Crear Proyecto</h3>
                     <hr/>
                     Nombre: <input type="text" name="nombre" class="form-control"/>
@@ -34,7 +34,7 @@
             <?php foreach($data["proyectos"] as $proyecto) {?>
                 Nombre: <?php echo $proyecto["nombre"]; ?> -
                 Descripcion: <?php echo $proyecto["descripcion"]; ?> -
-                <a href="index.php?controller=proyecto&action=delete&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class="btn btn-danger">Eliminar</a>&nbsp;
+                <a href="index.php?controller=proyecto&action=delete&idUsuario=<?php echo $_GET['idUsuario']?>&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class="btn btn-danger">Eliminar</a>&nbsp;
                 <a href="index.php?controller=proyecto&action=proyectoVista&idProyecto=<?php echo $proyecto['idProyecto'];?>" class="btn btn-info">Ir Proyecto</a>&nbsp;
                 <hr/>
             <?php } ?>
@@ -53,7 +53,7 @@
         </section>
             </div>
             <div class="col-lg-5">
-                <h3>MENSAJES</h3> 
+                <h3>ARCHIVOS</h3> 
                 
             </div>
         <footer class="col-lg-12">

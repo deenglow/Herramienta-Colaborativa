@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2018 a las 13:25:36
+-- Tiempo de generación: 22-01-2018 a las 13:36:19
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -42,9 +42,23 @@ CREATE TABLE `archivo` (
 
 CREATE TABLE `mensaje` (
   `idMensaje` int(4) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `idProyecto` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `mensaje`
+--
+
+INSERT INTO `mensaje` (`idMensaje`, `descripcion`, `fecha`, `idProyecto`) VALUES
+(1, 'probando', '2018-01-22', 61),
+(2, 'mensaje3', '2018-01-22', 61),
+(3, 'miercoles comprar', '2018-01-22', 61),
+(4, 'ir al gym', '2018-01-22', 61),
+(5, 'el coche esta bastante sucio', '2018-01-22', 62),
+(6, 'esta muy sucio', '2018-01-22', 64),
+(7, 'llevara tiempo', '2018-01-22', 64);
 
 -- --------------------------------------------------------
 
@@ -63,9 +77,12 @@ CREATE TABLE `proyecto` (
 --
 
 INSERT INTO `proyecto` (`idProyecto`, `nombre`, `descripcion`) VALUES
-(11, 'construir casa', 'adosada'),
-(26, 'asda', 'a'),
-(34, 'd', 'd');
+(61, 'usu1', 'pro1'),
+(62, 'usu1', 'pro2'),
+(63, 'usu1', 'pro3'),
+(64, 'usu2', 'pro1'),
+(65, 'usu2', 'pro2'),
+(66, 'usu2', 'pro3');
 
 -- --------------------------------------------------------
 
@@ -86,8 +103,10 @@ CREATE TABLE `tarea` (
 --
 
 INSERT INTO `tarea` (`idTarea`, `nombre`, `fecha_vencimiento`, `realizado`, `idProyecto`) VALUES
-(20, 'asdaf', '2018-01-12', 0, 11),
-(22, 'dasd', '2018-01-28', 0, 34);
+(22, 'pro1', '2018-01-25', 0, 61),
+(23, 'pro1.1', '2018-01-27', 0, 61),
+(24, 'lavar coche', '2018-01-26', 0, 62),
+(25, 'lavar coche', '2018-01-26', 0, 64);
 
 -- --------------------------------------------------------
 
@@ -111,7 +130,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `primerApellido`, `segundoApellido`, `email`, `contraseña`, `telefono`, `foto`) VALUES
-(1, 'david', 'xxx', 'xxx', 'pruebas@ppp.es', '12345', '945111111', '');
+(1, 'david', 'xxx', 'xxx', 'pruebas@ppp.es', '12345', '945111111', ''),
+(2, 'javi', 'xxx', 'xxx', 'wasda', '12345', '944526398', '');
 
 -- --------------------------------------------------------
 
@@ -121,8 +141,21 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `primerApellido`, `segundoApellido
 
 CREATE TABLE `usuario_proyecto` (
   `idUsuario` int(4) NOT NULL,
-  `idProyecto` int(4) NOT NULL
+  `idProyecto` int(4) NOT NULL,
+  `tipo` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario_proyecto`
+--
+
+INSERT INTO `usuario_proyecto` (`idUsuario`, `idProyecto`, `tipo`) VALUES
+(1, 61, 'creador'),
+(1, 62, 'creador'),
+(1, 63, 'creador'),
+(2, 64, 'creador'),
+(2, 65, 'creador'),
+(2, 66, 'creador');
 
 --
 -- Índices para tablas volcadas
@@ -182,25 +215,25 @@ ALTER TABLE `archivo`
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `idMensaje` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMensaje` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `idProyecto` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idProyecto` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

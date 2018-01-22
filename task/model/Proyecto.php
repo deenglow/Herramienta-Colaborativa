@@ -48,9 +48,9 @@ class Proyecto {
         $this->descripcion = $descripcion;
     }
 
-     public function getAll(){
+     public function getAllById($idUsuaro){
 
-        $consulta = $this->conexion->prepare("SELECT idProyecto, nombre, descripcion FROM proyecto") ;
+        $consulta = $this->conexion->prepare("SELECT * FROM proyecto p, usuario_proyecto up WHERE up.idProyecto = p.idProyecto and up.idUsuario = ".$idUsuaro) ;
         $consulta->execute();
         $resultados = $consulta->fetchAll();
         $this->conexion = null; 
@@ -58,16 +58,6 @@ class Proyecto {
 
     }  
     
-    public function getAllNoParticipante(){
-
-        $consulta = $this->conexion->prepare("SELECT idProyecto FROM  usuario_proyecto WHERE idUsuario != ") ;
-        $consulta->execute();
-        $resultados = $consulta->fetchAll();
-        $this->conexion = null; 
-        return $resultados;
-
-    }    
-
     public function save(){
         $consulta = $this->conexion->prepare("INSERT INTO proyecto (nombre,descripcion) VALUES (:nombre, :descripcion)");
         $save = $consulta->execute(array(

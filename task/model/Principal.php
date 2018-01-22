@@ -13,7 +13,7 @@
  */
 class Principal {
     //put your code here
-    private $table = "bodegas";
+    private $table = "principal";
     private $conexion;
     
      function __construct($conexion) {
