@@ -94,4 +94,14 @@ class Tarea {
         $this->conexion = null; 
 
     }
+    
+    public function realizado($idTarea){
+        $consulta = $this->conexion->prepare("UPDATE tarea SET realizado=1 WHERE idTarea =".$idTarea );  
+        $consulta->execute();
+        //$filas=  $consulta->rowCount();
+        $this->conexion = null; 
+        
+        return $idTarea;
+    }
+
 }

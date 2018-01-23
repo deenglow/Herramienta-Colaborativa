@@ -6,6 +6,28 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function (){
+               $('.realizado').click(function(event){
+                   var boton = $(this);
+                   //alert(boton.values());
+                   var idTarea=$(this).val();
+                    $.ajax({
+                        url: "index.php?controller=tarea&action=realizado",
+                        data: {"idTarea":idTarea},
+                        method: "POST",
+                        success: function(result){
+                            console.log(result);
+                            //$("button [value="+result+"]").hide();
+                            boton.hide();
+                            //alert ('ok');
+                            //alert (result);
+                        }
+                    });           
+                }); 
+            }); 
+
+        </script>
         <style>
             input{
                 margin-top:5px;
@@ -39,6 +61,7 @@
                 Nombre: <?php echo $tarea["nombre"]; ?> -
                 Fecha Vencimiento: <?php echo $tarea["fecha_vencimiento"]; ?> -
                 <a href="index.php?controller=tarea&action=delete&idTarea=<?php echo $tarea["idTarea"]?>&idProyecto=<?php echo $tarea["idProyecto"]?>" class="btn btn-danger">Eliminar</a>&nbsp;
+                <button class="btn btn-info realizado"  value="<?php echo $tarea["idTarea"]?>">Realizado</button>
                 <hr/>
             <?php } ?>
         </section>

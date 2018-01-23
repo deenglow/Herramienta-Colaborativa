@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2018 a las 13:36:19
+-- Tiempo de generación: 23-01-2018 a las 13:38:01
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -103,10 +103,11 @@ CREATE TABLE `tarea` (
 --
 
 INSERT INTO `tarea` (`idTarea`, `nombre`, `fecha_vencimiento`, `realizado`, `idProyecto`) VALUES
-(22, 'pro1', '2018-01-25', 0, 61),
-(23, 'pro1.1', '2018-01-27', 0, 61),
+(22, 'pro1', '2018-01-25', 1, 61),
+(23, 'pro1.1', '2018-01-27', 1, 61),
 (24, 'lavar coche', '2018-01-26', 0, 62),
-(25, 'lavar coche', '2018-01-26', 0, 64);
+(25, 'lavar coche', '2018-01-26', 0, 64),
+(29, 'axad', '2018-01-26', 1, 61);
 
 -- --------------------------------------------------------
 
@@ -227,7 +228,7 @@ ALTER TABLE `proyecto`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idTarea` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

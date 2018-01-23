@@ -38,6 +38,9 @@ class TareaController {
             case "delete" :
                 $this->delete();
                 break;
+            case "realizado" :
+                $this->realizado();
+                break;
         }
     }
     
@@ -64,12 +67,22 @@ class TareaController {
 
     //FUNCION DELETE
     public function delete (){
-         if(!isset($_GET["delete"])){
+        if(!isset($_GET["delete"])){
             $tarea=new Tarea($this->conexion);
             $tarea->delete($_GET["idTarea"]);
         }
         $id=$_GET["idProyecto"];
         header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
+    }
+    
+     //FUNCION REALIZADO
+    public function realizado(){
+        if(!isset($_GET["realizado"])){
+            $tarea=new Tarea($this->conexion);
+            $idTarea=$tarea->realizado($_POST["idTarea"]);
+        }    
+        echo $idTarea;
+        return $idTarea;
     }
     
 }
